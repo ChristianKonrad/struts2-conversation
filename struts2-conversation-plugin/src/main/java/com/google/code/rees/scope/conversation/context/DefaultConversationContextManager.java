@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.conversation.ConversationConstants;
 
@@ -41,8 +41,8 @@ import com.google.code.rees.scope.conversation.ConversationConstants;
  */
 public class DefaultConversationContextManager implements ConversationContextManager {
 
-    private static final long serialVersionUID = 3699451038473294837L;
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultConversationContextManager.class);
+    static private final long serialVersionUID = 3699451038473294837L;
+    private static final Logger LOG = LogManager.getLogger(DefaultConversationContextManager.class);
 
     protected ConversationContextFactory contextFactory;
 	protected Map<String, Map<String, ConversationContext>> conversations = Collections.synchronizedMap(new HashMap<String, Map<String, ConversationContext>>());

@@ -23,8 +23,8 @@
  ******************************************************************************/
 package com.google.code.rees.scope.struts2;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.container.ScopeContainer;
 import com.google.code.rees.scope.container.ScopeContainerProvider;
@@ -40,8 +40,9 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
  */
 public class SessionInterceptor implements Interceptor {
 
-    private static final long serialVersionUID = 3222190171260674636L;
-    private static final Logger LOG = LoggerFactory.getLogger(SessionInterceptor.class);
+    private static final long serialVersionUID = 201905082102L;
+    
+    static private final Logger LOG = LogManager.getLogger(SessionInterceptor.class);
 
     protected SessionManager sessionManager;
     protected ScopeContainer scopeContainer;

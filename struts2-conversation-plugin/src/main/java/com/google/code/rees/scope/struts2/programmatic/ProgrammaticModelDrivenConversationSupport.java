@@ -45,6 +45,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.opensymphony.xwork2.inject.Inject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This class makes it simple to manage models with conversation-scoped
@@ -65,6 +67,8 @@ public abstract class ProgrammaticModelDrivenConversationSupport<T extends Seria
 
     private static final long serialVersionUID = -3567083451289146237L;
 
+    private static final Logger LOG = LogManager.getLogger(ProgrammaticModelDrivenConversationSupport.class);
+    
     private T model;
 	protected ScopeContainer scopeContainer;
     

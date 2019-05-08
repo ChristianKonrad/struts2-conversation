@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * A utility class that provides static methods that are used internally
@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 public class InjectionUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(InjectionUtil.class);
+    private static final Logger LOG = LogManager.getLogger(InjectionUtil.class);
 
     public static Map<String, Object> getFieldValues(Object action, Map<String, Field> classScopeConfig) {
 

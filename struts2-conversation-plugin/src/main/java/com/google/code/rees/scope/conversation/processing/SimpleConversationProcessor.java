@@ -25,8 +25,8 @@ package com.google.code.rees.scope.conversation.processing;
 
 import java.util.Collection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.container.Component;
 import com.google.code.rees.scope.conversation.ConversationAdapter;
@@ -37,6 +37,7 @@ import com.google.code.rees.scope.conversation.configuration.ConversationConfigu
 import com.google.code.rees.scope.conversation.exceptions.ConversationException;
 import com.google.code.rees.scope.conversation.exceptions.ConversationIdException;
 
+
 /**
  * A simple yet effective implementation of {@link ConversationProcessor} that
  * manages conversation life cycles, but does not inject
@@ -45,10 +46,12 @@ import com.google.code.rees.scope.conversation.exceptions.ConversationIdExceptio
  * 
  * @author rees.byars
  */
-public class SimpleConversationProcessor implements ConversationProcessor {
+public class SimpleConversationProcessor implements ConversationProcessor 
+{
 
-	private static final long serialVersionUID = -518452439785782433L;
-	private static final Logger LOG = LoggerFactory.getLogger(SimpleConversationProcessor.class);
+    static private final long serialVersionUID = 201905082059L;
+
+	static private final Logger LOG = LogManager.getLogger(SimpleConversationProcessor.class);
 	
 	protected ConversationConfigurationProvider configurationProvider;
 

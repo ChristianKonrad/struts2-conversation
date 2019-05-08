@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.Dispatcher;
+import org.apache.struts2.dispatcher.HttpParameters;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.dispatcher.mapper.ActionMapper;
 import org.apache.struts2.dispatcher.mapper.ActionMapping;
@@ -38,7 +39,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionProxy;
 import com.opensymphony.xwork2.ActionProxyFactory;
-import com.opensymphony.xwork2.ValidationAware;
+import com.opensymphony.xwork2.interceptor.ValidationAware;
 import com.opensymphony.xwork2.config.Configuration;
 import com.opensymphony.xwork2.config.ConfigurationManager;
 import com.opensymphony.xwork2.inject.Container;
@@ -116,7 +117,8 @@ public abstract class StrutsTest<T> implements ProxyExecutionListener, PreResult
         ActionMapping mapping = getActionMapping(request);
 
         assertNotNull(mapping);
-        Dispatcher.getInstance().serviceAction(request, response, servletContext, mapping);
+        // OLD // Dispatcher.getInstance().serviceAction(request, response, servletContext, mapping);
+        Dispatcher.getInstance().serviceAction(request, response, mapping);
 
         if (response.getStatus() != HttpServletResponse.SC_OK)
             throw new ServletException("Error code [" + response.getStatus() + "], Error: [" + response.getErrorMessage() + "]");
@@ -153,14 +155,15 @@ public abstract class StrutsTest<T> implements ProxyExecutionListener, PreResult
         return proxy;
     }
 
-    protected Map<String, Object> buildMultipartParams(String multipartName, File file) {
-
+    // OLD // protected Map<String, Object> buildMultipartParams(String multipartName, File file) 
+    protected HttpParameters buildMultipartParams(String multipartName, File file) 
+    {
         Map<String, Object> params = new HashMap<String, Object>();
         params.putAll(request.getParameterMap());
         params.put(multipartName, file);
         params.put(multipartName + "FileName", file.getName());
         params.put(multipartName + "ContentType", MimetypesFileTypeMap.getDefaultFileTypeMap().getContentType(file));
-        return params;
+        return HttpParameters.create(params).build();
     }
 
     @SuppressWarnings("unchecked")
@@ -178,7 +181,7 @@ public abstract class StrutsTest<T> implements ProxyExecutionListener, PreResult
         this.actionFromProxy = (T) proxy.getAction();
         proxy.setExecuteResult(isExecuteResult());
         ActionContext invocationContext = proxy.getInvocation().getInvocationContext();
-        invocationContext.setParameters(new HashMap<String, Object>(request.getParameterMap()));
+        invocationContext.setParameters(HttpParameters.create( request.getParameterMap()).build());
         invocationContext.setSession(session);
         // set the action context to the one used by the proxy
         ActionContext.setContext(invocationContext);

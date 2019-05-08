@@ -4,15 +4,17 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import com.google.code.rees.scope.session.SessionUtil;
 import com.google.code.rees.scope.util.ReflectionUtil;
 
 public abstract class AbstractScopeContainer implements ScopeContainer {
 	
-	private static final long serialVersionUID = -6820777796732236492L;
-	private static final Logger LOG = LoggerFactory.getLogger(AbstractScopeContainer.class);
+	static private final long serialVersionUID = 201905082129L;
+	
+	static private final Logger LOG = LogManager.getLogger(SessionUtil.class);
 	
 	private Map<Class<?>, Object> components = new HashMap<Class<?>, Object>();
 

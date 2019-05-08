@@ -27,8 +27,8 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.conversation.ConversationAdapter;
 import com.google.code.rees.scope.conversation.ConversationUtil;
@@ -44,8 +44,9 @@ import com.google.code.rees.scope.util.InjectionUtil;
  */
 public class DefaultInjectionConversationProcessor extends SimpleConversationProcessor implements InjectionConversationProcessor, ConversationPostProcessor {
 
-    private static final long serialVersionUID = 8632020943340087L;
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultInjectionConversationProcessor.class);
+    private static final long serialVersionUID = 201905082138L;
+    
+    private static final Logger LOG = LogManager.getLogger(DefaultInjectionConversationProcessor.class);
 
     /**
      * {@inheritDoc}

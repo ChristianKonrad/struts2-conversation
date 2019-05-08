@@ -28,8 +28,10 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import org.apache.commons.logging.LogFactory;
 
 
 /**
@@ -42,7 +44,7 @@ import org.slf4j.LoggerFactory;
 @WebListener
 public class ConversationCleanupListener implements HttpSessionListener {
 	
-	private static Logger LOG = LoggerFactory.getLogger(ConversationCleanupListener.class);
+    static private final Logger LOG = LogManager.getLogger(ConversationCleanupListener.class);
 	
 	public ConversationCleanupListener() {
 		LOG.info("Conversation Cleanup Listener created.");

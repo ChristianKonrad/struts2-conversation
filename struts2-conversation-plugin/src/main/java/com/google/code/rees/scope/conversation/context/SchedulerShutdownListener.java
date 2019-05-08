@@ -6,15 +6,16 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @WebListener
-public class SchedulerShutdownListener implements ServletContextListener {
+public class SchedulerShutdownListener implements ServletContextListener 
+{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(SchedulerShutdownListener.class);
+    static private final Logger LOG = LogManager.getLogger(SchedulerShutdownListener.class);
 	
-	private static ScheduledExecutorService scheduler;
+    static private ScheduledExecutorService scheduler;
 	
 	public static void setScheduler(ScheduledExecutorService scheduler) {
 		SchedulerShutdownListener.scheduler = scheduler;

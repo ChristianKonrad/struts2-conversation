@@ -25,8 +25,8 @@ package com.google.code.rees.scope.conversation.processing;
 
 import java.util.Map.Entry;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.conversation.ConversationAdapter;
 import com.google.code.rees.scope.conversation.configuration.ConversationClassConfiguration;
@@ -39,10 +39,12 @@ import com.google.code.rees.scope.conversation.configuration.ConversationClassCo
  * @author rees.byars
  * 
  */
-public class ConversationEndProcessor implements ConversationPostProcessor {
+public class ConversationEndProcessor implements ConversationPostProcessor 
+{
 
-    private static final long serialVersionUID = 2164492176500215404L;
-    private static final Logger LOG = LoggerFactory.getLogger(ConversationEndProcessor.class);
+    static private final long serialVersionUID = 201905082136L;
+
+    static private final Logger LOG = LogManager.getLogger(ConversationEndProcessor.class);
 
     /**
      * Removes the conversation context from the session context

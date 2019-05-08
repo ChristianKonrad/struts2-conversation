@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.ActionProvider;
 import com.google.code.rees.scope.container.Component;
@@ -55,7 +55,7 @@ public class StrutsConversationArbitrator extends DefaultConversationArbitrator 
 
     private static final long serialVersionUID = 6842124082407418415L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(StrutsConversationArbitrator.class);
+    static private final Logger LOG = LogManager.getLogger(StrutsConversationArbitrator.class);
 
     private Map<Class<?>, Collection<String>> packageBasedConversations = Collections.synchronizedMap(new HashMap<Class<?>, Collection<String>>());
 

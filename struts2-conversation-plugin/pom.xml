@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.googlecode.struts2-conversation</groupId>
 		<artifactId>struts2-conversation</artifactId>
-		<version>1.7.5-SNAPSHOT</version>
+		<version>1.8.0-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>struts2-conversation-scope-plugin</artifactId>
@@ -27,11 +27,17 @@
 			<artifactId>struts2-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
+        <dependency>
+  <groupId>org.apache.logging.log4j</groupId>
+  <artifactId>log4j-api</artifactId>
+            <scope>provided</scope>
+<!--   <version>${log4.version}</version> -->
 		</dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
 		<!-- Optional, Provided Scope Dependencies -->
 		<dependency>
@@ -142,12 +148,11 @@
 			<version>3.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!--             <groupId>org.apache.logging.log4j</groupId> -->
+<!--             <artifactId>log4j-api</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.objenesis</groupId>
 			<artifactId>objenesis</artifactId>
@@ -170,12 +175,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
 			<scope>test</scope>
 		</dependency>
 		

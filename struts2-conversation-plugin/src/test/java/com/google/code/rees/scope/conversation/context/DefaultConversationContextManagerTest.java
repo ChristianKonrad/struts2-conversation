@@ -8,8 +8,8 @@ import java.util.HashSet;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.testutil.SerializationTestingUtil;
 import com.google.code.rees.scope.testutil.thread.BasicTaskThread;
@@ -73,7 +73,7 @@ public class DefaultConversationContextManagerTest {
     
     class CollectionExpansionTask implements ThreadTask {
     	
-    	private final Logger LOG = LoggerFactory.getLogger(CollectionExpansionTask.class);
+    	private final Logger LOG = LogManager.getLogger(CollectionExpansionTask.class);
     	
     	private ConversationContextManager manager;
     	private CollectionContractionTask removalTask;
@@ -105,7 +105,7 @@ public class DefaultConversationContextManagerTest {
     
     class CollectionContractionTask implements ThreadTask {
     	
-    	private final Logger LOG = LoggerFactory.getLogger(CollectionContractionTask.class);
+    	private final Logger LOG = LogManager.getLogger(CollectionContractionTask.class);
     	
     	private ConversationContextManager manager;
     	private Collection<String> ids = Collections.synchronizedSet(new HashSet<String>());

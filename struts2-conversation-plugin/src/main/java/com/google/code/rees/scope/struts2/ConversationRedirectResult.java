@@ -27,7 +27,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.dispatcher.ServletRedirectResult;
+import org.apache.struts2.result.ServletRedirectResult;
 
 import com.google.code.rees.scope.conversation.ConversationAdapter;
 import com.google.code.rees.scope.util.RedirectUtil;

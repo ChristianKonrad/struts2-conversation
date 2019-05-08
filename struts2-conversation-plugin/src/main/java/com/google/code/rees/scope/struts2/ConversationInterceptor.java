@@ -31,9 +31,12 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.struts2.StrutsStatics;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.struts2.dispatcher.HttpParameters;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.container.ScopeContainer;
 import com.google.code.rees.scope.container.ScopeContainerProvider;
@@ -48,10 +51,11 @@ import com.google.code.rees.scope.conversation.processing.InjectionConversationP
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.ActionProxy;
+import com.opensymphony.xwork2.LocalizedTextProvider;
 import com.opensymphony.xwork2.inject.Inject;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.opensymphony.xwork2.interceptor.PreResultListener;
-import com.opensymphony.xwork2.util.LocalizedTextUtil;
+import com.opensymphony.xwork2.util.StrutsLocalizedTextProvider;
 
 /**
  * 
@@ -62,8 +66,9 @@ import com.opensymphony.xwork2.util.LocalizedTextUtil;
  */
 public class ConversationInterceptor implements Interceptor {
 
-    private static final long serialVersionUID = -72776817859403642L;
-    private static final Logger LOG = LoggerFactory.getLogger(ConversationInterceptor.class);
+    private static final long serialVersionUID = 201905082105L;
+    
+    static private final Logger LOG = LogManager.getLogger(ConversationInterceptor.class);
     
     /**
      * This key can be used in a message resource bundle to specify a message in the case of a user
@@ -179,6 +184,26 @@ public class ConversationInterceptor implements Interceptor {
      * 
      * @param parameters a map of the request parameters
      */
+    protected void cleanupParamIds(HttpParameters params)
+    {
+        for ( String key : params.keySet() )
+        {
+            if (ID_PARAM_PATTERN.matcher(key).matches()) 
+            {
+                params.remove(key);
+            }
+        }
+    }
+    
+    
+    /**
+     * removes the conversation ids from the parameter map so that they are excluded from further parameter processing
+     * 
+     * @param parameters a map of the request parameters
+     * 
+     * @deprecated since struts 2.5 is using {@link HttpParameters}
+     */
+    @Deprecated
     protected void cleanupParamIds(Map<String, Object> parameters) {
     	for (Iterator<Entry<String, Object>> i = parameters.entrySet().iterator(); i.hasNext();) {
 			if (ID_PARAM_PATTERN.matcher(i.next().getKey()).matches()) {
@@ -208,12 +233,15 @@ public class ConversationInterceptor implements Interceptor {
 		//message key for the conversation
 		final String conversationSpecificMessageKey = CONVERSATION_ID_EXCEPTION_KEY + "." + cie.getConversationName();
 		
-		//First, we attempt to get a conversation-specific message from a bundle
-		String errorMessage = LocalizedTextUtil.findText(this.getClass(), conversationSpecificMessageKey, locale);
+		// get a localized text provider from struts package
+		LocalizedTextProvider local_text_provider = new StrutsLocalizedTextProvider();
+		
+		// 	First, we attempt to get a conversation-specific message from a bundle
+		String errorMessage = local_text_provider.findText(this.getClass(), conversationSpecificMessageKey, locale);
 		
 		//If conversation specific message not found, get generic message, if that not found use default
 		if (errorMessage == null || errorMessage.equals(conversationSpecificMessageKey)) {
-			errorMessage = LocalizedTextUtil.findText(this.getClass(), CONVERSATION_ID_EXCEPTION_KEY, locale,
+			errorMessage = local_text_provider.findText(this.getClass(), CONVERSATION_ID_EXCEPTION_KEY, locale,
                     "The workflow that you are attempting to continue has ended or expired.  Your requested action was not processed.", new Object[0]);
 		}
 		
@@ -242,7 +270,10 @@ public class ConversationInterceptor implements Interceptor {
 		
 		Locale locale = invocation.getInvocationContext().getLocale();
 		
-		String errorMessage = LocalizedTextUtil.findText(this.getClass(), CONVERSATION_EXCEPTION_KEY, locale,
+		// get a localized text provider from struts package
+        LocalizedTextProvider local_text_provider = new StrutsLocalizedTextProvider();
+        
+        String errorMessage = local_text_provider.findText(this.getClass(), CONVERSATION_EXCEPTION_KEY, locale,
                     "An unexpected error occurred while processing you request.  Please try again.", new Object[0]);
 		
 		if (LOG.isDebugEnabled()) {

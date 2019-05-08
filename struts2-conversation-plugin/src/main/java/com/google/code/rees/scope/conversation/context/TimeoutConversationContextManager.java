@@ -24,8 +24,8 @@
  **********************************************************************************************************************/
 package com.google.code.rees.scope.conversation.context;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.util.monitor.TimeoutListener;
 import com.google.code.rees.scope.util.monitor.TimeoutMonitor;
@@ -40,9 +40,9 @@ import com.google.code.rees.scope.util.monitor.TimeoutMonitor;
  */
 public class TimeoutConversationContextManager extends DefaultConversationContextManager implements TimeoutListener<ConversationContext> {
 
-	private static final long serialVersionUID = -4431057690602876686L;
+	static private final long serialVersionUID = 201905082131L;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(TimeoutConversationContextManager.class);
+	static private final Logger LOG = LogManager.getLogger(TimeoutConversationContextManager.class);
 	
 	protected TimeoutMonitor<ConversationContext> conversationTimeoutMonitor;
 	

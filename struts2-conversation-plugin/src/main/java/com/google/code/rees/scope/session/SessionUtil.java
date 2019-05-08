@@ -26,9 +26,10 @@ package com.google.code.rees.scope.session;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import com.google.code.rees.scope.struts2.ConversationInterceptor;
 import com.google.code.rees.scope.util.ReflectionUtil;
 
 /**
@@ -40,9 +41,10 @@ import com.google.code.rees.scope.util.ReflectionUtil;
  * @author rees.byars
  * 
  */
-public class SessionUtil {
+public class SessionUtil 
+{
 
-    private static final Logger LOG = LoggerFactory.getLogger(SessionUtil.class);
+    static private final Logger LOG = LogManager.getLogger(SessionUtil.class);
 
     /**
      * Given the name of a session-scoped field and its class, this method

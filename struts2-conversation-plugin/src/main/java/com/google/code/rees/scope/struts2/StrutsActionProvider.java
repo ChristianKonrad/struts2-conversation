@@ -34,9 +34,10 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.StrutsConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.struts2.convention.DefaultClassFinder;
 
 import com.google.code.rees.scope.ActionProvider;
 import com.opensymphony.xwork2.ActionContext;
@@ -60,9 +61,10 @@ import com.opensymphony.xwork2.util.finder.UrlSet;
  */
 public class StrutsActionProvider implements ActionProvider {
 
-    private static final long serialVersionUID = 6728107973559862449L;
+    private static final long serialVersionUID = 201905082104L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(StrutsActionProvider.class);
+    static private final Logger LOG = LogManager.getLogger(StrutsActionProvider.class);
+    
     private static final boolean EXTRACT_BASE_INTERFACES = true;
 
     private transient Set<Class<?>> actionClasses;
@@ -351,7 +353,7 @@ public class StrutsActionProvider implements ActionProvider {
                 // specified by the user
                 Test<String> classPackageTest = getClassPackageTest();
                 List<URL> urls = readUrls();
-                ClassFinder finder = new ClassFinder(getClassLoaderInterface(), urls, EXTRACT_BASE_INTERFACES, fileProtocols, classPackageTest);
+                ClassFinder finder = new DefaultClassFinder(getClassLoaderInterface(), urls, EXTRACT_BASE_INTERFACES, fileProtocols, classPackageTest);
 
                 Test<ClassFinder.ClassInfo> test = getActionClassTest();
                 for (Class<?> clazz : finder.findClasses(test)) {

@@ -33,8 +33,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.google.code.rees.scope.container.Component;
 import com.google.code.rees.scope.container.Property;
@@ -54,7 +54,7 @@ public class DefaultHttpConversationContextManagerProvider implements HttpConver
 
     private static final long serialVersionUID = 1500381458203865515L;
 
-    private static Logger LOG = LoggerFactory.getLogger(DefaultHttpConversationContextManagerProvider.class);
+    private static Logger LOG = LogManager.getLogger(DefaultHttpConversationContextManagerProvider.class);
 
     protected long monitoringFrequency = TimeoutMonitor.DEFAULT_MONITOR_FREQUENCY;
     protected int maxInstances = ConversationConstants.DEFAULT_MAXIMUM_NUMBER_OF_A_GIVEN_CONVERSATION;

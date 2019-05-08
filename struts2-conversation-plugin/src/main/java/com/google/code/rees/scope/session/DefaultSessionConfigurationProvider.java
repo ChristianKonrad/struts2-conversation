@@ -28,8 +28,8 @@ import java.lang.reflect.Modifier;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.code.rees.scope.ActionProvider;
 import com.google.code.rees.scope.container.Component;
@@ -43,8 +43,8 @@ import com.google.code.rees.scope.util.ReflectionUtil;
  */
 public class DefaultSessionConfigurationProvider implements SessionConfigurationProvider {
 
-    private static final long serialVersionUID = 3703684121698557461L;
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultSessionConfigurationProvider.class);
+    private static final long serialVersionUID = 201905082138L;
+    private static final Logger LOG = LogManager.getLogger(DefaultSessionConfigurationProvider.class);
     protected transient SessionConfiguration configuration = new SessionConfiguration();
     protected Set<Class<?>> classesProcessed = new HashSet<Class<?>>();
     protected ActionProvider actionProvider;

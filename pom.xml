@@ -4,7 +4,7 @@
 
 	<groupId>com.googlecode.struts2-conversation</groupId>
 	<artifactId>struts2-conversation</artifactId>
-	<version>1.8.0-SNAPSHOT</version>
+	<version>1.8.0-alpha</version>
 	<packaging>pom</packaging>
 
 	<parent>
@@ -43,6 +43,14 @@
 			<timezone>-4</timezone>
 			<email>reesDOTbyarsATG00GLEMAIL</email>
 		</developer>
+        <developer>
+            <name>Christian Konrad</name>
+            <roles>
+                <role>Helping Delvelopber</role>
+            </roles>
+            <email>christian.konrad@oratore.de</email>
+            <timezone>1</timezone>
+        </developer>
 	</developers>
 	
 	<inceptionYear>2012</inceptionYear>
@@ -66,7 +74,6 @@
  
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!-- 		<slf4j.version>1.6.4</slf4j.version> -->
         <log4j.version>2.11.2</log4j.version>
 		<struts2.version>2.5.20</struts2.version>
 		<spring.version>3.1.1.RELEASE</spring.version>

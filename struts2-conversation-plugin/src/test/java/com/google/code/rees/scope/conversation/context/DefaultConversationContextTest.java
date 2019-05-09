@@ -10,14 +10,12 @@ import org.junit.Test;
 import com.google.code.rees.scope.testutil.SerializableObjectTest;
 import com.google.code.rees.scope.testutil.SerializationTestingUtil;
 
-public class DefaultConversationContextTest extends
-        SerializableObjectTest<DefaultConversationContext> {
-
+public class DefaultConversationContextTest extends SerializableObjectTest<DefaultConversationContext> 
+{
     @Test
-    public void testDefaultConversationContext() throws IOException,
-            ClassNotFoundException {
-        ConversationContext context = new DefaultConversationContext(
-                "testName", "testId", 5L);
+    public void testDefaultConversationContext() throws IOException, ClassNotFoundException 
+    {
+        ConversationContext context = new DefaultConversationContext("testName", "testId", 5L);
         assertTrue(5L == context.getRemainingTime() || 4L == context.getRemainingTime());
         assertEquals("testName", context.getConversationName());
         assertEquals("testId", context.getId());
@@ -29,5 +27,4 @@ public class DefaultConversationContextTest extends
         assertEquals("beanValue", context.get("bean"));
         assertEquals(5L, context.getRemainingTime());
     }
-
 }
